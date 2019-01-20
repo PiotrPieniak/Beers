@@ -30,20 +30,20 @@ class CountryCommand extends Command
     public function handle()
     {
         try {
-            $results = json_decode(Storage::get('public/countries.json'));
+            $results = json_decode(file_get_contents('countries.json'));
+
+            foreach ($results as $alpha => $name)
+            {
+                $country = new Country();
+
+                $country->name = $name;
+                $country->alpha2code = $alpha;
+                $country->save();
+            }
+
+            $this->info('Countries table filled');
         } catch (\Exception $e) {
-            $this->error('Cannot get countries database');
+            $this->error('Cannot get countries database, check if you have countries.json in root directory');
         }
-
-        foreach ($results as $alpha => $name)
-        {
-            $country = new Country();
-
-            $country->name = $name;
-            $country->alpha2code = $alpha;
-            $country->save();
-        }
-
-        $this->info('Countries table filled');
     }
 }
