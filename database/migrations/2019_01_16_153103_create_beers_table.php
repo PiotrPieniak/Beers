@@ -22,7 +22,7 @@ class CreateBeersTable extends Migration
             $table->float('price');
             $table->string('type', 100);
             $table->float('price_per_litre');
-            $table->string('country_id');
+            $table->integer('country_id');
         });
     }
 

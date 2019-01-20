@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::get('beers', 'BeerController@index')->middleware('cors');
+
+Route::get('beer/{id}', 'BeerController@show')->middleware('cors');
+
+Route::get('types', 'BeerController@types')->middleware('cors');
+
+Route::get('countries', 'BeerController@countries')->middleware('cors');
+
+Route::get('brewers', 'BrewerController@index')->middleware('cors');
+
