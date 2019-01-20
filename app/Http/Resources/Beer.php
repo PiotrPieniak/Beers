@@ -24,7 +24,7 @@ class Beer extends JsonResource
             'price' => $this->price,
             'image_url' => $this->image_url,
             'country' => Country::find($this->country_id),
-            'price_per_litre' => $this->price_per_litre
+            'price_per_litre' => number_format((float)$this->price_per_litre, 2, '.', '')
         ];
     }
 }
